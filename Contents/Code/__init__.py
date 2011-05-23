@@ -54,7 +54,8 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
     dir = MediaContainer(disabledViewModes=["Coverflow"], title1 = L('Title')) 
 
     vidcasts_page = HTML.ElementFromURL(url)
-    vidcasts = vidcasts_page.xpath("//div[@class='item-list']/ul/li[@class='product']")
+    vidcasts_initial_node = vidcasts_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Vidcasts')]/..")[0]
+    vidcasts = vidcasts_initial_node.xpath(".//div[@class='item-list']/ul/li[@class='product']")
     
     for item in vidcasts:
         
@@ -66,7 +67,6 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
              # Attempt to determine the absolue URL to the page
              relative_url = item.xpath(".//div/a")[0].get('href')
              url = BASE_URL + String.Quote(relative_url)
-             Log(url)
 
              # [Optional] - Attempt to determine the subtitle
              subtitle = None
@@ -91,8 +91,7 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
 
         # Attempt to determine if there is more videos available on the next page.
         next_relative_url = vidcasts_page.xpath("//div[@class='pagination']/span[@class='next']/a[@class='active']")[0].get('href')
-        next_url = BASE_URL + String.Quote(next_relative_url)
-
+        next_url = BASE_URL + next_relative_url
         dir.Append(Function(DirectoryItem(
             VidCastMenu,
             "Next"),
@@ -111,7 +110,8 @@ def VideoReviewMenu(sender, url = VIDEO_REVIEWS_URL):
     dir = MediaContainer(disabledViewModes=["Coverflow"], title1 = L('Title')) 
 
     video_reviews_page = HTML.ElementFromURL(url)
-    video_reviews = video_reviews_page.xpath("//div[@class='item-list']/ul/li[@class='product']")
+    video_reviews_initial_node = video_reviews_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Video reviews')]/..")[0]
+    video_reviews = video_reviews_initial_node.xpath(".//div[@class='item-list']/ul/li[@class='product']")
 
     for item in video_reviews:
 
@@ -146,11 +146,11 @@ def VideoReviewMenu(sender, url = VIDEO_REVIEWS_URL):
     try:
 
         # Attempt to determine if there is more videos available on the next page.
-        next_relative_url = vidcasts_page.xpath("//div[@class='pagination']/span[@class='next']/a[@class='active']")[0].get('href')
-        next_url = BASE_URL + String.Quote(next_relative_url)
+        next_relative_url = video_reviews_page.xpath("//div[@class='pagination']/span[@class='next']/a[@class='active']")[0].get('href')
+        next_url = BASE_URL + next_relative_url
 
         dir.Append(Function(DirectoryItem(
-            VidCastMenu,
+            VideoReviewMenu,
             "Next"),
             url = next_url))
 
