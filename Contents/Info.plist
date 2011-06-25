@@ -24,15 +24,7 @@
 	<string>2</string>
 	<key>PlexMediaContainer</key>
 	<array>
-		<string>MP4</string>
-	</array>
-	<key>PlexAudioCodec</key>
-	<array>
-		<string>AAC</string>
-	</array>
-	<key>PlexVideoCodec</key>
-	<array>
-		<string>H.264</string>
+		<string>Flash</string>
 	</array>
 	<key>PlexPluginRegions</key>
 	<array>
