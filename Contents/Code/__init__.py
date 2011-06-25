@@ -1,7 +1,3 @@
-####################################################################################################
-
-VIDEO_PREFIX = "/video/stufftv"
-
 NAME = L('Title')
 
 ART = 'art-default.jpg'
@@ -20,7 +16,7 @@ SEARCH_URL = "http://www.stuff.tv/search/video?search=%s"
 def Start():
     
     # Initialize the plugin
-    Plugin.AddPrefixHandler(VIDEO_PREFIX, MainMenu, L('Title'), ICON, ART)
+    Plugin.AddPrefixHandler("/video/stufftv", MainMenu, L('Title'), ICON, ART)
     Plugin.AddViewGroup("Basic", viewMode = "InfoList", mediaType = "items")
     Plugin.AddViewGroup("Basic", viewMode = "List", mediaType = "items")
     

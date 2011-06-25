@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site site="http://www.stuff.tv/"
-	plugin="http://c.brightcove.com/services/viewer*"
+	plugin="http://c.brightcove.com/services/viewer"
 	initialState="playing"
-	version="1.0"
-	identifier="com.plexapp.plugins.stufftv">
-    
+	version="1.0">
+
 	<!-- Playing -->
 	<state name="playing">
 		<event>
@@ -34,7 +33,7 @@
         	</action>
     	</event>
 	</state>
-    
+
     <!-- Paused -->
 	<state name="paused">
 		<event>
@@ -43,7 +42,7 @@
 			</condition>
 			<action>
                 <click x="43" y="251" />
-                
+
                 <!-- It appears that the controls will remain visible until another -->
                 <!-- mouse event occurs. We therefore simply send another click to  -->
                 <!-- a different location of the screen. -->
