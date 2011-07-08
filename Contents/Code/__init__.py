@@ -65,9 +65,7 @@ def MainMenu():
 
 def VidCastMenu(sender, url = VIDCASTS_URL):
     dir = MediaContainer(disabledViewModes=["Coverflow"], title1 = L('Title'), title2 = L('VidCasts')) 
-    
-    Log("IABI")
-    Log(url)
+
     vidcasts_page = HTML.ElementFromURL(url)
     vidcasts_initial_node = vidcasts_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Vidcasts')]/..")[0]
     vidcasts = vidcasts_initial_node.xpath(".//div[@class='item-list']/ul/li//div[contains(@class,'product')]")
@@ -123,9 +121,6 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
 
 def VideoReviewMenu(sender, url = VIDEO_REVIEWS_URL):
     dir = MediaContainer(disabledViewModes=["Coverflow"], title1 = L('Title'), title2 = L('VideoReviews')) 
-
-    Log("IABI")
-    Log(url)
     
     video_reviews_page = HTML.ElementFromURL(url)
     video_reviews_initial_node = video_reviews_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Video reviews')]/..")[0]
