@@ -25,6 +25,9 @@ def Start():
     MediaContainer.title1 = NAME
     DirectoryItem.thumb = R(ICON)
 
+    # Cache HTTP requests for up to a day
+    HTTP.CacheTime = CACHE_1DAY
+
 # This main function will setup the displayed items. This will depend if the user is currently
 # logged in.
 def MainMenu():
@@ -61,7 +64,7 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
 
     vidcasts_page = HTML.ElementFromURL(url)
     vidcasts_initial_node = vidcasts_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Vidcasts')]/..")[0]
-    vidcasts = vidcasts_initial_node.xpath(".//div[@class='item-list']/ul/li[@class='product']")
+    vidcasts = vidcasts_initial_node.xpath(".//div[@class='item-list']/ul/li//div[contains(@class,'product')]")
     
     for item in vidcasts:
         
@@ -114,10 +117,10 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
 
 def VideoReviewMenu(sender, url = VIDEO_REVIEWS_URL):
     dir = MediaContainer(disabledViewModes=["Coverflow"], title1 = L('Title'), title2 = L('VideoReviews')) 
-
+    
     video_reviews_page = HTML.ElementFromURL(url)
     video_reviews_initial_node = video_reviews_page.xpath("//div[@class='inner-container']/div/h2[contains(text(), 'Video reviews')]/..")[0]
-    video_reviews = video_reviews_initial_node.xpath(".//div[@class='item-list']/ul/li[@class='product']")
+    video_reviews = video_reviews_initial_node.xpath(".//div[@class='item-list']/ul/li//div[contains(@class,'product')]")
 
     for item in video_reviews:
 
