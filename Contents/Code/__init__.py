@@ -88,7 +88,9 @@ def VidCastMenu(sender, url = VIDCASTS_URL):
 
              # [Optional] - Attempt to determine the thumbnail
              thumb = None
-             try: thumb = item.xpath(".//div/a/img")[0].get('src')
+             try: 
+                 thumb_url = item.xpath(".//div/a/img")[0].get('src')
+                 thumb = "http:" + String.Quote(thumb_url[5:])
              except: pass
 
              dir.Append(WebVideoItem(
@@ -144,7 +146,9 @@ def VideoReviewMenu(sender, url = VIDEO_REVIEWS_URL):
 
              # [Optional] - Attempt to determine the thumbnail
              thumb = None
-             try: thumb = item.xpath(".//div/a/img")[0].get('src')
+             try: 
+                 thumb_url = item.xpath(".//div/a/img")[0].get('src')
+                 thumb = "http:" + String.Quote(thumb_url[5:])
              except: pass
 
              dir.Append(WebVideoItem(
@@ -210,7 +214,9 @@ def SearchMenu(sender, query, url = None):
             
             # [Optional] - Attempt to determine the thumbnail
             thumb = None
-            try: thumb = item.xpath(".//a/img")[0].get('src')
+            try: 
+                thumb_url = item.xpath(".//a/img")[0].get('src')
+                thumb = "http:" + String.Quote(thumb_url[5:])
             except: pass
             
             dir.Append(WebVideoItem(
