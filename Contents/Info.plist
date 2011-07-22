@@ -30,5 +30,10 @@
 	<array>
 		<string>GB</string>
 	</array>
+    <key>PlexSearchServices</key>
+	<dict>
+	   <key>Stuff-TV</key>
+	   <string>com.plexapp.search.stufftv</string>
+	</dict>
 </dict>
 </plist>
