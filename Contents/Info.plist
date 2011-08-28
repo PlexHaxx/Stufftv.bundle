@@ -26,14 +26,21 @@
 	<array>
 		<string>Flash</string>
 	</array>
+	<key>PlexClientCapabilities</key>
+	<dict>
+		<key>protocols</key>
+		<array>
+			<string>webkit</string>
+		</array>
+	</dict>
 	<key>PlexPluginRegions</key>
 	<array>
 		<string>GB</string>
 	</array>
-    <key>PlexSearchServices</key>
+	<key>PlexSearchServices</key>
 	<dict>
-	   <key>Stuff-TV</key>
-	   <string>com.plexapp.search.stufftv</string>
+		<key>Stuff-TV</key>
+		<string>com.plexapp.search.stufftv</string>
 	</dict>
 </dict>
 </plist>
