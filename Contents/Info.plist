@@ -24,23 +24,24 @@
 	<string>2</string>
 	<key>PlexMediaContainer</key>
 	<array>
-		<string>Flash</string>
+		<string>MP4</string>
 	</array>
-	<key>PlexClientCapabilities</key>
-	<dict>
-		<key>protocols</key>
-		<array>
-			<string>webkit</string>
-		</array>
-	</dict>
+	<key>PlexAudioCodec</key>
+	<array>
+		<string>AAC</string>
+	</array>
+	<key>PlexVideoCodec</key>
+	<array>
+		<string>H.264</string>
+	</array>
 	<key>PlexPluginRegions</key>
 	<array>
 		<string>GB</string>
 	</array>
-	<key>PlexSearchServices</key>
+    <key>PlexSearchServices</key>
 	<dict>
-		<key>Stuff-TV</key>
-		<string>com.plexapp.search.stufftv</string>
+	   <key>Stuff-TV</key>
+	   <string>com.plexapp.search.stufftv</string>
 	</dict>
 </dict>
 </plist>

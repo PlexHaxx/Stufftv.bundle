@@ -3,6 +3,8 @@ import re
 BASE_URL = "http://www.stuff.tv"
 SEARCH_URL = "http://www.stuff.tv/search/video?search=%s"
 
+ObjectContainer.art = R('art-default.jpg')
+
 def Search(query):
 
   # Compute the URL and download the HTML
