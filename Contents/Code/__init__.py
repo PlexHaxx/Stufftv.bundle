@@ -1,7 +1,5 @@
 ####################################################################################################
 
-VIDEO_PREFIX = "/video/stufftv"
-
 NAME = L('Title')
 
 ART = 'art-default.jpg'
@@ -20,7 +18,6 @@ SEARCH_URL = "http://www.stuff.tv/search/video?search=%s"
 def Start():
     
     # Initialize the plugin
-    Plugin.AddPrefixHandler(VIDEO_PREFIX, MainMenu, L('Title'), ICON, ART)
     Plugin.AddViewGroup("List", viewMode = "List", mediaType = "items")
     
     # Set the default ObjectContainer attributes
@@ -31,6 +28,8 @@ def Start():
     # Default icons for DirectoryObject, VideoClipObject and SearchDirectoryObject in case there isn't an image
     DirectoryObject.thumb = R(ICON)
     DirectoryObject.art = R(ART)
+    NextPageObject.thumb = R(ICON)
+    NextPageObject.art = R(ART)
     VideoClipObject.thumb = R(ICON)
     VideoClipObject.art = R(ART)
     SearchDirectoryObject.thumb = R(ICON)
@@ -39,12 +38,13 @@ def Start():
     # Cache HTTP requests for up to a day
     HTTP.CacheTime = CACHE_1DAY
 
+@handler('/video/stufftv', NAME, art = ART, thumb = ICON)
 def MainMenu():
     oc = ObjectContainer(title1 = L('Title'))
 
     oc.add(DirectoryObject(key = Callback(VidCastMenu), title = L('VidCasts')))
     oc.add(DirectoryObject(key = Callback(VideoReviewMenu), title = L('VideoReviews')))
-    oc.add(SearchDirectoryObject(identifier="com.plexapp.search.stufftv", title = L('Search'), prompt = L('SearchPrompt'), thumb = R(ICON)))
+    oc.add(SearchDirectoryObject(identifier="com.plexapp.plugins.stufftv", title = L('Search'), prompt = L('SearchPrompt'), thumb = R(ICON)))
 
     return oc
 
@@ -52,6 +52,7 @@ def MainMenu():
 # VIDCASTS
 ####################################################################################################
 
+@route('/video/stufftv/videocasts', allow_sync = True)
 def VidCastMenu(url = VIDCASTS_URL):
     oc = ObjectContainer(title1 = L('Title'), title2 = L('VidCasts')) 
 
@@ -98,7 +99,7 @@ def VidCastMenu(url = VIDCASTS_URL):
         # Attempt to determine if there is more videos available on the next page.
         next_relative_url = vidcasts_page.xpath("//div[@class='pagination']/span[@class='next']/a[@class='active']")[0].get('href')
         next_url = BASE_URL + next_relative_url
-        oc.add(DirectoryObject(key = Callback(VidCastMenu, url = next_url), title = L('Next')))
+        oc.add(NextPageObject(key = Callback(VidCastMenu, url = next_url), title = L('Next')))
 
     except: 
         pass
@@ -109,6 +110,7 @@ def VidCastMenu(url = VIDCASTS_URL):
 # VIDEO REVIEWS
 ####################################################################################################
 
+@route('/video/stufftv/reviews', allow_sync = True)
 def VideoReviewMenu(url = VIDEO_REVIEWS_URL):
     oc = ObjectContainer(title1 = L('Title'), title2 = L('VideoReviews')) 
     
@@ -155,7 +157,7 @@ def VideoReviewMenu(url = VIDEO_REVIEWS_URL):
         # Attempt to determine if there is more videos available on the next page.
         next_relative_url = video_reviews_page.xpath("//div[@class='pagination']/span[@class='next']/a[@class='active']")[0].get('href')
         next_url = BASE_URL + next_relative_url
-        oc.add(DirectoryObject(key = Callback(VideoReviewMenu, url = next_url), title = L('Next')))
+        oc.add(NextPageObject(key = Callback(VideoReviewMenu, url = next_url), title = L('Next')))
 
     except: 
         pass
