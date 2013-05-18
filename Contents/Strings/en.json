@@ -1,8 +1,8 @@
-{   
-    'Title' : 'Stuff.tv',
-    'VidCasts': 'VidCasts',
-    'VideoReviews': 'Video Reviews',
-    'Search' : 'Search',
-    'SearchPrompt': 'Please enter the topic you would like to search...',
-    'Next': 'Next'
+{
+	"Title" : "Stuff.tv",
+	"VidCasts": "VidCasts",
+	"VideoReviews": "Video Reviews",
+	"Search" : "Search",
+	"SearchPrompt": "Please enter the topic you would like to search...",
+	"Next": "Next..."
 }
